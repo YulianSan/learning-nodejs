@@ -1,9 +1,15 @@
 const express = require('express');
 const router = express.Router();
+const connect = require('./database/connect');
 
-router.get('/', function(req, res) {
-    console.log(req, res);
-    res.end('isso')
-})
+connect();
+
+router.get('/', function(){
+
+    },
+    function(req, res) {
+        console.log(req, res);
+        res.end('isso')
+    });
 
 module.exports = router;

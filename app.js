@@ -13,14 +13,11 @@ app.use((req, res, next)=>{
     app.use(cors());
     next();
 });
-  
-app.use(router);
 
 require('dotenv').config();
-
 connect();
-
 app.use(express.json())
+app.use(router);
 
 
 app.listen(3000, ()=>{ console.log('server running!')});

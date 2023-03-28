@@ -12,13 +12,11 @@ const UserController = {
     },
     createUsers: async (req, res)=>{
         try{
-            let { username, password } = req.body;
             const response = await User.create({
-                username,
-                password
+                username : req.body.username,
+                password : req.body.password
             });
 
-            console.log(req.body);
             res.status(201).json({response, msg: 'Criado com sucesso'})
         }catch(err){
             console.log(err);

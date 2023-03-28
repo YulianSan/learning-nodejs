@@ -1,15 +1,10 @@
-const express = require('express');
-const router = express.Router();
-const connect = require('./database/connect');
+const router = require('express').Router();
+const userRoute = require('./routes/user');
 
-connect();
+router.use('/user', userRoute);
 
-router.get('/', function(){
-
-    },
-    function(req, res) {
-        console.log(req, res);
-        res.end('isso')
-    });
+router.get('/', (req, res)=>{
+    res.end('teste');
+})
 
 module.exports = router;

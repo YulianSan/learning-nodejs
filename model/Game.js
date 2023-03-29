@@ -4,14 +4,14 @@ const { Schema } = mongoose;
 const gameSchema = new Schema({
     title: {
         type: String,
-        require: true,
+        required: true,
     },
     description: {
         type: String,
-        require: true,
+        required: true,
     },
     deleted: {
-        require: false,
+        required: false,
         type: Date
     },
     // id do usuário

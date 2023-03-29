@@ -1,18 +1,22 @@
 const router = require('express').Router();
-const { body, validationResult } = require('express-validator');
 const userController = require('../controller/UserController');
+const { canAccess } = require('../middleware/isAuth');
 
 router.get('/', (req, res)=> userController.getUsers(req, res));
-router.post('/', 
-    body('username').isLength({min:5, max: 255}),
-    body('password').isLength({min:5, max: 255}),
-    (req, res)=>{
-        const error = validationResult(req);
-        if(!error.isEmpty())
-            res.status(400).json({errors: error.array()})
-        else
-            userController.createUsers(req, res);
-        
-    });
+router.post('/',(req, res)=>{
+    userController.createUsers(req, res);
+});
+
+router.put('/:id',
+    userController.existUser,
+    userController.updateUsers
+    
+);
+
+router.delete('/:id',
+    canAccess,
+    userController.existUser,
+    userController.deleteUser
+);
 
 module.exports = router;

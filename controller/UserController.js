@@ -1,4 +1,5 @@
 const User = require('../model/User');
+const bcrypt = require('bcryptjs');
 
 const UserController = {
     getUsers: async (req, res)=>{
@@ -14,10 +15,10 @@ const UserController = {
         try{
             const response = await User.create({
                 username : req.body.username,
-                password : req.body.password
+                password : bcrypt.hashSync(req.body.password)
             });
 
-            res.status(201).json({response, msg: 'Criado com sucesso'})
+            res.status(201).json({id: response._id, msg: 'Criado com sucesso'})
         }catch(err){
             res.status(400).json(err);
         }

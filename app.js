@@ -16,7 +16,8 @@ app.use((req, res, next)=>{
 
 require('dotenv').config();
 connect();
-app.use(express.json())
+app.use(express.json());
+
 app.use(router);
 
 

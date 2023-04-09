@@ -1,5 +1,5 @@
-const http = require('http');
-const https = require('https')
+import http from 'http';
+import https from 'https';
 
 const app = http.createServer((req, res)=>{
     if(req.method == 'POST' && req.url == '/'){
